@@ -228,3 +228,10 @@
     transform: rotate(0deg);
   }
 }
+
+.layout {
+  min-height: 100vh;
+}
+.content {
+  margin: 0 16px;
+}
