@@ -52,13 +52,13 @@ function AppSidebar() {
     >
       {/* Start of Logo */}
       <Row justify="center" align="middle">
-        <div style={{ fontSize: 50, color: "white" }}>
+        <div style={{ fontSize: 50, color: "white", marginTop: 20 }}>
           <RadarChartOutlined />
         </div>
       </Row>
-      <Row justify="center" align="middle">
-        <div style={{ color: "white" }}>Radar Technologies</div>
-      </Row>
+      <div style={{ color: "white", margin: 20, textAlign: "center" }}>
+        Msalvio Software and Hardware
+      </div>
       <Divider style={{ background: "white" }} />
       {/* End of Logo */}
       <Menu theme="dark" mode="vertical" items={items} />

@@ -1,6 +1,8 @@
 "use client"; //Important
 import AdvanceSearch from "@/app/components/commons/AdvanceSearch";
 import FormHeader from "@/app/components/commons/FormHeader";
+import TextFieldGroup from "@/app/components/commons/TextFieldGroup";
+import { smallFormItemLayout } from "@/app/utilities/Layouts";
 import { Divider, Form, Row } from "antd";
 import Input from "antd/es/input/Input";
 import { Content } from "antd/es/layout/layout";
@@ -27,12 +29,41 @@ function Page() {
 
       <AdvanceSearch
         onSearch={() => console.log("search")}
-        items={[<Input />, <Input />, <Input />]}
+        items={[
+          <TextFieldGroup
+            label="Test Label 1"
+            name="test1"
+            formItemLayout={smallFormItemLayout}
+          />,
+          <TextFieldGroup
+            label="Test Label 2"
+            name="test2"
+            formItemLayout={smallFormItemLayout}
+          />,
+          <TextFieldGroup
+            label="Test Label 3"
+            name="test3"
+            formItemLayout={smallFormItemLayout}
+          />,
+          <TextFieldGroup
+            label="Test Label 1"
+            name="test1"
+            formItemLayout={smallFormItemLayout}
+          />,
+          <TextFieldGroup
+            label="Test Label 2"
+            name="test2"
+            formItemLayout={smallFormItemLayout}
+          />,
+          <TextFieldGroup
+            label="Test Label 3"
+            name="test3"
+            formItemLayout={smallFormItemLayout}
+          />,
+        ]}
       />
 
-      <Divider />
-
-      <Row justify="space-between" align="middle">
+      <Row style={{ marginTop: 20 }} justify="space-between" align="middle">
         <span className="module-title">{title}</span>
       </Row>
 

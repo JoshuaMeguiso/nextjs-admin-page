@@ -29,7 +29,7 @@ export default ({
                       title="Advance Filter"
                       subTitle="Enter appropriate data to filter records"
                     />
-                    <Row gutter={[0, 8]} style={{ paddingBottom: 8 }}>
+                    <Row gutter={[0, 0]}>
                       {items.map((component, index) => (
                         <Col
                           key={index}
@@ -42,20 +42,21 @@ export default ({
                       ))}
                     </Row>
                     <Row justify="start">
-                      <Space>
-                        <Button
-                          size="large"
-                          icon={<SearchOutlined />}
-                          onClick={onSearch}
-                        >
-                          Search
-                        </Button>
-                        {additional_buttons.map((Component, index) => (
-                          <React.Fragment key={index}>
-                            {Component}
-                          </React.Fragment>
-                        ))}
-                      </Space>
+                      <Col span={22} offset={2}>
+                        <Space>
+                          <Button
+                            icon={<SearchOutlined />}
+                            onClick={onSearch}
+                          >
+                            Search
+                          </Button>
+                          {additional_buttons.map((Component, index) => (
+                            <React.Fragment key={index}>
+                              {Component}
+                            </React.Fragment>
+                          ))}
+                        </Space>
+                      </Col>
                     </Row>
                   </div>
                 ),
