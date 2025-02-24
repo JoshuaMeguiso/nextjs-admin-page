@@ -13,6 +13,8 @@ import { Divider, Menu, Row } from "antd";
 import Sider from "antd/es/layout/Sider";
 import Link from "next/link";
 import { useSelector } from "react-redux";
+import reports from "@/app/routers/reports";
+import Image from "next/image";
 import logo from "../../images/logo.png";
 
 function AppSidebar() {
@@ -32,10 +34,10 @@ function AppSidebar() {
       children: transactions,
     },
     {
-      key: "2",
+      key: "3",
       label: "Reports",
       icon: <TransactionOutlined />,
-      children: transactions,
+      children: reports,
     },
   ];
 
@@ -53,13 +55,26 @@ function AppSidebar() {
       {/* Start of Logo */}
       <Row justify="center" align="middle">
         <div style={{ fontSize: 50, color: "white", marginTop: 20 }}>
-          <RadarChartOutlined />
+          <Image
+            src={logo}
+            alt="logo"
+            width={150} // Set the width explicitly
+            height={150} // Set the height explicitly
+            priority
+          />
         </div>
       </Row>
-      <div style={{ color: "white", margin: 20, textAlign: "center" }}>
-        Msalvio Software and Hardware
+      <div
+        style={{
+          color: "white",
+          textAlign: "center",
+          fontSize: 10,
+          marginBottom: 30,
+        }}
+      >
+        The Generic Pharmacy
       </div>
-      <Divider style={{ background: "white" }} />
+      {/* <Divider style={{ background: "white" }} /> */}
       {/* End of Logo */}
       <Menu theme="dark" mode="vertical" items={items} />
     </Sider>

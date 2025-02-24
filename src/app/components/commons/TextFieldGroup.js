@@ -61,11 +61,11 @@ TextFieldGroup.propTypes = {
   autoComplete: PropTypes.string,
 };
 
-TextFieldGroup.defaultProps = {
-  text: "text",
-  disabled: false,
-  readOnly: false,
-  autoComplete: "on",
-};
+// TextFieldGroup.defaultProps = {
+//   text: "text",
+//   disabled: false,
+//   readOnly: false,
+//   autoComplete: "on",
+// };
 
 export default TextFieldGroup;

@@ -1,6 +1,7 @@
 "use client"; //Important
 import React from "react";
-import { Input, Button, Row, Col, Space, Breadcrumb } from "antd";
+import { Input, Button, Row, Col, Space, Breadcrumb, Grid } from "antd";
+const { useBreakpoint } = Grid;
 
 const Search = Input.Search;
 
@@ -13,11 +14,14 @@ export default ({
   onDownload,
   breadcrumb_items = [],
 }) => {
+  const screens = useBreakpoint(); // Detect screen size
   const items = breadcrumb_items.map((o) => ({ title: o }));
   return (
     <Row justify="space-between" align="middle" style={{ marginBottom: 24 }}>
-      {items.length > 0 && <Breadcrumb items={items} />}
-      <Space>
+      <Col span={screens.xs ? 8 : 12}>
+        {items.length > 0 && <Breadcrumb items={items} />}
+      </Col>
+      <Col span={screens.xs ? 16 : 12} style={{ textAlign: "right" }}>
         {onSearch && (
           <Search
             name={name}
@@ -34,17 +38,7 @@ export default ({
             New
           </Button>
         )}
-
-        {onDownload && (
-          <Button
-            style={{ marginLeft: "0.5rem" }}
-            icon={<i className="fa-solid fa-print pad-right-8"></i>}
-            onClick={onDownload}
-          >
-            Download Excel
-          </Button>
-        )}
-      </Space>
+      </Col>
     </Row>
   );
 };

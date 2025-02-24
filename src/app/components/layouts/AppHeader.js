@@ -1,5 +1,6 @@
 "use client"; //Important
 import { setCollapse } from "@/app/redux/reducers/collapseSlice";
+import { clearUser } from "@/app/redux/reducers/userSlice";
 import {
   LogoutOutlined,
   MenuFoldOutlined,
@@ -13,6 +14,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 function AppHeader() {
   const collapsed = useSelector((state) => state.collapsed.collapse);
+  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
 
   const [hovered, setHovered] = useState(false);
@@ -32,12 +34,13 @@ function AppHeader() {
         />
         <div>
           <Space>
+            {auth?.user?.name}
             <Avatar
               onMouseEnter={() => {
                 setHovered(true);
               }}
               onClick={() => {
-                console.log("log out");
+                dispatch(clearUser());
               }}
               onMouseLeave={() => {
                 setHovered(false);
@@ -45,7 +48,6 @@ function AppHeader() {
               size="large"
               icon={hovered ? <LogoutOutlined /> : <UserOutlined />}
             />
-            Joshua
           </Space>
         </div>
       </Row>
