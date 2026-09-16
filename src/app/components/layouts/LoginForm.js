@@ -4,6 +4,9 @@ import TextFieldGroup from "../commons/TextFieldGroup";
 import { useState } from "react";
 import Image from "next/image";
 import logo from "../../images/logo.png";
+import axios from "axios";
+import setAuthToken from "../../utilities/setAuthToken";
+import { jwtDecode } from "jwt-decode";
 import { useDispatch } from "react-redux";
 import { setAuthentication } from "../../redux/reducers/userSlice";
 import { useRouter } from "next/navigation";
@@ -11,18 +14,6 @@ import { useRouter } from "next/navigation";
 const initialValues = {
   username: "",
   password: "",
-};
-
-const sampleCredentials = {
-  username: "admin",
-  password: "admin12345",
-};
-
-const sampleUser = {
-  username: sampleCredentials.username,
-  permissions: [],
-  suppliers: [],
-  companies: [],
 };
 
 export default function Page() {
@@ -38,17 +29,32 @@ export default function Page() {
         <Form
           layout="vertical"
           onFinish={() => {
-            if (
-              state.username !== sampleCredentials.username ||
-              state.password !== sampleCredentials.password
-            ) {
-              setErrors({ username: "Invalid demo credentials" });
-              return;
-            }
+            axios
+              .post("/api/users/login", state)
+              .then((response) => {
+                const { token, name, role, permissions, suppliers, companies } =
+                  response.data;
 
-            setErrors({});
-            dispatch(setAuthentication(sampleUser));
-            router.push("/");
+                localStorage.setItem("jwtToken", token);
+                setAuthToken(token);
+
+                dispatch(
+                  setAuthentication({
+                    ...jwtDecode(token),
+                    name,
+                    role,
+                    permissions,
+                    suppliers,
+                    companies,
+                  }),
+                );
+
+                setErrors({});
+                router.push("/");
+              })
+              .catch((error) => {
+                setErrors(error.response?.data || { username: "Login failed" });
+              });
           }}
         >
           <div style={{ textAlign: "center", marginBottom: 16 }}>
