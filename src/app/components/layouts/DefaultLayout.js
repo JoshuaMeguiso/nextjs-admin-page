@@ -18,6 +18,7 @@ function LayoutContent({ children }) {
   const isAuthenticated = useSelector(
     (state) => state.auth?.isAuthenticated || false,
   );
+  const collapsed = useSelector((state) => state.collapsed.collapse);
   const dispatch = useDispatch();
   const [isHydrated, setIsHydrated] = useState(false);
 
@@ -44,7 +45,12 @@ function LayoutContent({ children }) {
   return isAuthenticated ? (
     <Layout style={{ minHeight: "100vh" }}>
       <MenuComponent />
-      <Layout>
+      <Layout
+        style={{
+          marginLeft: collapsed ? 0 : 200,
+          transition: "margin-left 0.2s",
+        }}
+      >
         <AppHeader />
         {children}
         <AppFooter />

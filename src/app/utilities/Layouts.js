@@ -17,10 +17,10 @@ export const threeColumnFormItemLayout = {
 };
 export const smallFormItemLayout = {
   labelCol: {
-    sm: { span: 6 },
+    sm: { span: 8 },
   },
   wrapperCol: {
-    sm: { span: 18 },
+    sm: { span: 16 },
   },
 };
 

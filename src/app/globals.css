@@ -29,7 +29,7 @@ body {
 
 /* Antd Customize CSS */
 .ant-layout-content {
-  margin: 24px;
+  margin: 8px 24px 24px 24px;
   padding: 24px;
   min-height: 280px;
   background: #ffffff;
@@ -46,7 +46,7 @@ body {
 @media (max-width: 768px) {
   .ant-layout-content {
     padding: 16px;
-    margin: 16px;
+    margin: 4px 16px 16px 16px;;
   }
 
   .ant-layout-header {
@@ -58,7 +58,7 @@ body {
 @media (max-width: 480px) {
   .ant-layout-content {
     padding: 12px;
-    margin: 12px;
+    margin: 2px 12px 12px 12px;
   }
 
   .ant-layout-header {
