@@ -3,7 +3,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  collapse: true,
+  collapse: false,
 };
 
 const collapseSlice = createSlice({
