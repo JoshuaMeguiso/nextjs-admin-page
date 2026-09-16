@@ -38,7 +38,7 @@ body {
 
 .ant-layout-header {
   padding: 0px 24px 0px 0px !important;
-  background: #ffffff !important;
+  /* background: #ffffff !important; */
 }
 /* Antd Customize CSS */
 
@@ -51,7 +51,7 @@ body {
 
   .ant-layout-header {
     padding: 0px 16px 0px 0px !important;
-    background: #ffffff !important;
+    /* background: #ffffff !important; */
   }
 }
 

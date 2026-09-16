@@ -2,7 +2,12 @@
 import { AntdRegistry } from "@ant-design/nextjs-registry";
 import { Layout } from "antd";
 import { Provider, useSelector } from "react-redux"; // Import useSelector inside the Provider
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import { jwtDecode } from "jwt-decode";
 import store from "../../redux/store";
+import setAuthToken from "../../utilities/setAuthToken";
+import { setAuthentication } from "../../redux/reducers/userSlice";
 import AppFooter from "./AppFooter";
 import MenuComponent from "./MenuComponent";
 import AppHeader from "./AppHeader";
@@ -11,8 +16,30 @@ import LoginForm from "../../page";
 function LayoutContent({ children }) {
   // Now useSelector is inside Provider
   const isAuthenticated = useSelector(
-    (state) => state.auth?.isAuthenticated || false
+    (state) => state.auth?.isAuthenticated || false,
   );
+  const dispatch = useDispatch();
+  const [isHydrated, setIsHydrated] = useState(false);
+
+  useEffect(() => {
+    const token = localStorage.getItem("jwtToken");
+
+    if (token) {
+      try {
+        const user = jwtDecode(token);
+        setAuthToken(token);
+        dispatch(setAuthentication(user));
+      } catch {
+        localStorage.removeItem("jwtToken");
+      }
+    }
+
+    setIsHydrated(true);
+  }, [dispatch]);
+
+  if (!isHydrated) {
+    return null;
+  }
 
   return isAuthenticated ? (
     <Layout style={{ minHeight: "100vh" }}>
